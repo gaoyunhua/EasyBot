@@ -1,0 +1,25 @@
+{
+  "name": "calculator_agent",
+  "description": "A simple calculator agent that performs basic arithmetic operations.",
+  "phase": "saved",
+  "version": "1.0.0",
+  "skills": [
+    {
+      "name": "math",
+      "description": "能够进行数学运算",
+      "instructions": "能够进行数学运算",
+      "priority": 5,
+      "enabled": true
+    }
+  ],
+  "tools": [],
+  "source": {
+    "type": "local",
+    "url": "",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/downloaded/calculator_agent.md"
+  },
+  "created_at": "2026-05-05T17:35:42.671973",
+  "updated_at": "2026-05-05T17:35:42.671996",
+  "is_active": false,
+  "extra": {}
+}

@@ -1,0 +1,50 @@
+{
+  "name": "calculator_v2",
+  "description": "A simple calculator agent that performs basic arithmetic operations.",
+  "phase": "saved",
+  "version": "1.0.0",
+  "skills": [
+    {
+      "name": "math",
+      "description": "能够进行数学运算",
+      "instructions": "能够进行数学运算",
+      "priority": 5,
+      "enabled": true
+    }
+  ],
+  "tools": [
+    {
+      "name": "add",
+      "description": "加法运算",
+      "code": "def add(a, b=0):\n    try:\n        pass\n        \"\"\"加法运算\"\"\"\n        return a + b\n    except Exception as e:\n        return f'Error: {e}'",
+      "language": "python",
+      "parameters": {
+        "a": "any",
+        "b=0": "any"
+      },
+      "returns": "",
+      "dependencies": []
+    },
+    {
+      "name": "subtract",
+      "description": "减法运算",
+      "code": "def subtract(a, b=0):\n    try:\n        pass\n        \"\"\"减法运算\"\"\"\n        return a - b\n    except Exception as e:\n        return f'Error: {e}'",
+      "language": "python",
+      "parameters": {
+        "a": "any",
+        "b=0": "any"
+      },
+      "returns": "",
+      "dependencies": []
+    }
+  ],
+  "source": {
+    "type": "local",
+    "url": "",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/downloaded/calculator_v2.md"
+  },
+  "created_at": "2026-05-05T17:36:44.840556",
+  "updated_at": "2026-05-05T17:36:44.840566",
+  "is_active": false,
+  "extra": {}
+}

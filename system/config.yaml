@@ -1,0 +1,55 @@
+# EasyBot System Configuration
+
+## LLM Provider Settings
+llm:
+  enabled: true
+  provider: "local"
+  endpoint: "http://localhost:8000"
+  temperature: 0.7
+  max_tokens: 2048
+
+## Message Agent Settings
+message_agent:
+  complex_detection_enabled: true
+  complex_keywords:
+    - create
+    - build
+    - design
+    - develop
+    - implement
+    - agent
+    - assistant
+    - system
+    - framework
+    - project manager
+    - ai model
+    - training
+    - pipeline
+    - bridge
+    - bridgeai
+    - data
+    - analysis
+    - quant
+    - trading
+
+## Agent Settings
+agents:
+  default_name: "EasyBot"
+  auto_create: true
+  test_on_create: true
+
+## Platform Settings
+platforms:
+  cli:
+    enabled: true
+    auto_detect: true
+  wechat:
+    enabled: true
+    auto_login: false
+
+## Memory Settings
+memory:
+  storage_path: "memory.json"
+  max_messages: 1000
+  auto_save: true
+  save_interval: 60  # seconds

@@ -1,0 +1,72 @@
+{
+  "test_creator_agent": {
+    "name": "test_creator_agent",
+    "description": "创建一个简单的计算器 agent，能够执行加减乘除运算",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/test_creator_agent/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-05T17:23:20.582491"
+  },
+  "test_full_flow": {
+    "name": "test_full_flow",
+    "description": "一个测试 agent，用于验证完整流程",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/test_full_flow/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-05T17:23:36.391511"
+  },
+  "test_full_flow2": {
+    "name": "test_full_flow2",
+    "description": "一个测试 agent，用于验证完整流程",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/test_full_flow2/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-05T17:24:30.093075"
+  },
+  "calculator_agent": {
+    "name": "calculator_agent",
+    "description": "A simple calculator agent that performs basic arithmetic operations.",
+    "phase": "active",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/calculator_agent",
+    "skills_count": 1,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-05T17:35:42.801897"
+  },
+  "calculator_v2": {
+    "name": "calculator_v2",
+    "description": "A simple calculator agent that performs basic arithmetic operations.",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/calculator_v2",
+    "skills_count": 1,
+    "tools_count": 2,
+    "version": "1.0.0",
+    "updated_at": "2026-05-05T17:36:45.847671"
+  },
+  "calculator_v3": {
+    "name": "calculator_v3",
+    "description": "A simple calculator agent that performs basic arithmetic operations.",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/calculator_v3",
+    "skills_count": 1,
+    "tools_count": 2,
+    "version": "1.0.0",
+    "updated_at": "2026-05-05T17:37:24.070865"
+  },
+  "test_global_workspace": {
+    "name": "test_global_workspace",
+    "description": "测试全局 workspace",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/test_global_workspace/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-05T17:39:44.775430"
+  }
+}
