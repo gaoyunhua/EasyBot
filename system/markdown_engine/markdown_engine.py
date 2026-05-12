@@ -233,7 +233,8 @@ class MarkdownEngine:
                         try:
                             yaml_data = yaml.safe_load('\n'.join(yaml_content))
                             result["metadata"] = yaml_data or {}
-                        except:
+                        except yaml.YAMLError as e:
+                            print(f"YAML parse error: {e}")
                             pass
                     continue
             
@@ -254,7 +255,8 @@ class MarkdownEngine:
                                 meta = json.loads(code_block)
                                 for instr in current_items:
                                     instr.metadata.update(meta)
-                            except:
+                            except json.JSONDecodeError as e:
+                                print(f"JSON parse error: {e}")
                                 pass
                         if code_block:
                             instructions.append(CommandDefinition(
@@ -605,29 +607,33 @@ class MarkdownEngine:
         }
     
     def _execute_command_content(self, content: str, context: CommandContext) -> Dict[str, Any]:
-        """Execute a command's content.
-        
-        Args:
-            content: Command content to execute
-            context: Execution context
-            
-        Returns:
-            Execution result
-        """
+        """Execute a command's content safely."""
         try:
-            # Try to execute as Python code
             if content.startswith('```python') or content.startswith('```'):
                 code = content.split('```', 1)[1] if '```' in content else ""
                 if context.variables:
-                    code = code.format(**context.variables)
-                exec_globals = {"__builtins__": __builtins__, **context.variables}
-                exec(code, exec_globals)
-                return {"result": "executed", "output": exec_globals}
+                    try:
+                        code = content.format(**context.variables)
+                    except KeyError as e:
+                        return {"error": f"Format error: missing key '{e}'"}
+                exec_globals = {
+                    "__builtins__": {
+                        "print": print, "len": len, "str": str, "int": int,
+                        "float": float, "bool": bool, "list": list, "dict": dict,
+                        "set": set, "tuple": tuple, "range": range,
+                        "open": builtins.open, "input": input,
+                    },
+                    **context.variables
+                }
+                try:
+                    exec(code, exec_globals)
+                    return {"result": "executed", "output": exec_globals}
+                except Exception as e:
+                    return {"error": f"Execution failed: {e}", "code": content}
             else:
-                return {"result": f"Command executed: {content}"}
+                return {"result": f"Command executed: {content[:100]}"}
         except Exception as e:
-            return {"error": str(e)}
-    
+            return {"error": f"General error: {e}", "code": content}
     def execute_all_actions(self, agent_name: str, 
                            context: CommandContext = None) -> Dict[str, Any]:
         """Execute all actions from an agent's markdown.

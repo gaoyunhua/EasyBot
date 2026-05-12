@@ -219,15 +219,53 @@ Examples:
         print("=" * 50)
         print("Type your requirements to create agents...\n")
         
+        # 询问 LLM 信息
+        print("📦 LLM Configuration")
+        print("-" * 50)
+        print("LLM Setup:")
+        print("  - /model provider:model_manufacturer/model_name")
+        print("    Example: /model siliconlab:deepseek/deepseek-v4-flash")
+        print("    Providers: openai, anthropic, ollama, siliconlab,local,deepseek")
+        print()
+        model_input = input(">").strip()
+        
+        # 解析模型输入
+        if model_input.startswith("/model "):
+            model_str = model_input[7:]  # 去掉 "/model "
+            if ":" in model_str:
+                provider, model_name = model_str.split(":", 1)
+                model_provider = provider.strip().lower()
+            else:
+                model_provider = model_str.strip().lower()
+        else:
+            model_provider = model_input.lower() or "openai"
+        
+        # 初始化全局变量
+        init_globals(model_provider=model_provider)
+        print(f"Using LLM: {model_provider}\n")
+        
         while True:
-            prompt = input("Agent requirement (or 'exit' to quit): ").strip()
-            if prompt.lower() == "exit":
-                break
-            print("\n" + "-" * 50)
             try:
+                prompt = input("Agent requirement (or 'exit' to quit): ").strip()
+                if prompt.lower() == "exit":
+                    break
+                print("\n" + "-" * 50)
+                
                 creator = AgentCreator()
-                agent = creator.create_agent(prompt)
-                print("\n✅ Agent created successfully!")
+                # 从需求中提取 agent 名称（取前几个单词）
+                import re
+                name_parts = re.sub(r'[^\w\s]', '', prompt).split()[:3]
+                agent_name = "_".join(name_parts).lower() or "new_agent"
+                # 创建 agent
+                agent, errors = creator.create_agent(agent_name, prompt)
+                if errors:
+                    print(f"\n⚠️ 警告: {errors}")
+                print(f"\n✅ Agent '{agent_name}' created successfully!")
+                from system import MODEL_PROVIDER as CURRENT_MODEL
+                print(f"   Using LLM: {CURRENT_MODEL}")
+            except KeyboardInterrupt:
+                print("\n\n👋 Goodbye!")
+                break
             except Exception as e:
                 print(f"\n❌ Error: {e}")
                 continue
