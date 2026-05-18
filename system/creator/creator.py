@@ -19,10 +19,13 @@ from system import WORKSPACE as GLOBAL_WORKSPACE
 
 
 def _get_workspace_dir():
-    """获取工作区目录，优先使用全局变量 WORKSPACE"""
+    """获取工作区目录，使用全局变量 WORKSPACE"""
     if GLOBAL_WORKSPACE is not None:
         return GLOBAL_WORKSPACE
-    return Path(__file__).resolve().parent.parent.parent / "workspace"
+    raise RuntimeError(
+        "WORKSPACE is not initialized. Call system.init_globals(workspace=...) "
+        "before using the creator module."
+    )
 
 def _get_project_dir():
     """获取项目根目录"""

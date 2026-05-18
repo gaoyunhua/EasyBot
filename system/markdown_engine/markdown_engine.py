@@ -90,10 +90,15 @@ class MarkdownEngine:
         """Initialize the MarkdownEngine.
         
         Args:
-            workspace_dir: Path to the workspace directory. If None, defaults to
-                          the parent of this module.
+            workspace_dir: Path to the workspace directory. Must be provided
+                          explicitly; no automatic fallback.
         """
-        self.workspace_dir = workspace_dir or Path(__file__).parent.parent.parent / "workspace"
+        if workspace_dir is None:
+            raise ValueError(
+                "MarkdownEngine requires an explicit workspace_dir. "
+                "Pass a Path to the workspace directory."
+            )
+        self.workspace_dir = workspace_dir
         self.agent_dir = self.workspace_dir / "agent"
         self.command_registry: Dict[str, List[CommandDefinition]] = {}
         self._global_command_id = 0
@@ -770,8 +775,13 @@ class MarkdownCommandExecutor:
     
     def __init__(self, workspace_dir: Path = None):
         """Initialize with workspace directory."""
-        self.workspace_dir = workspace_dir or Path(__file__).parent.parent.parent / "workspace"
-        self.engine = MarkdownEngine(workspace_dir)
+        if workspace_dir is None:
+            raise ValueError(
+                "MarkdownCommandExecutor requires an explicit workspace_dir. "
+                "Pass a Path to the workspace directory."
+            )
+        self.workspace_dir = workspace_dir
+        self.engine = MarkdownEngine(self.workspace_dir)
     
     def list_agents(self) -> List[str]:
         """List all agents."""

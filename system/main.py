@@ -27,16 +27,17 @@ from system.markdown_engine.message_handler import (
 )
 from system import init_globals, WORKSPACE, MODEL_PROVIDER, CONNECTOR
 
+def _get_workspace_dir() -> Path:
+    """获取 workspace 目录（按需创建）"""
+    ws_dir = ROOT_DIR / "workspace"
+    ws_dir.mkdir(parents=True, exist_ok=True)
+    return ws_dir
+
+
 def main():
     """Main entry point for EasyBot system."""
     global WORKSPACE, MODEL_PROVIDER, CONNECTOR
     
-    # Initialize workspace directory
-    workspace_dir = ROOT_DIR / "workspace"
-    workspace_dir.mkdir(parents=True, exist_ok=True)
-    
-    # Initialize global variables
-    init_globals(workspace=workspace_dir)
     parser = argparse.ArgumentParser(
         description="EasyBot - Agent Builder System",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -58,17 +59,19 @@ Examples:
     python -m system.main --list-agents
   
   Create a reusable skill:
-    python -m system.main --create-skill "example skill" --description "A reusable workspace skill."
+    python -m system.main --create-skill "example skill" --description "A reusable skill."
     
   Create a reusable tool:
-    python -m system.main --create-tool "example tool" --description "A reusable workspace tool."
+    python -m system.main --create-tool "example tool" --description "A reusable tool."
   
   Start conversation with agent:
     python -m system.main --converse --agent greeting_agent
   
   Use MarkdownEngine class in your code:
     from system.markdown_engine import MarkdownEngine
-    engine = MarkdownEngine(Path("/mnt/d/gyh/Projects/TRAE/EasyBot/workspace"))
+    from pathlib import Path
+
+    engine = MarkdownEngine(Path("workspace"))
     actions = engine.list_actions("greeting_agent")
     tasks = engine.list_tasks("calculator")
     code_blocks = engine.list_code_blocks("python_runner")
@@ -186,14 +189,9 @@ Examples:
     
     args = parser.parse_args()
     
-    # Initialize system components
-    system_dir = ROOT_DIR / "system"
-    workspace_dir = ROOT_DIR / "workspace"
-    workspace_dir.mkdir(parents=True, exist_ok=True)
-    
     if args.list_agents:
         # List all generated agents
-        agent_dir = workspace_dir / "agent"
+        agent_dir = _get_workspace_dir() / "agent"
         if not agent_dir.exists():
             print("\nNo agents found in workspace/agent/")
             return 0
@@ -275,7 +273,7 @@ Examples:
     
     if args.read_markdown:
         # Read markdown from agent using MarkdownEngine
-        engine = MarkdownEngine(workspace_dir)
+        engine = MarkdownEngine(_get_workspace_dir())
         result = engine.read_markdown(args.read_markdown)
         
         if result["success"]:
@@ -290,7 +288,7 @@ Examples:
     
     if args.read_all_markdowns:
         # Read all markdown files using MarkdownEngine
-        engine = MarkdownEngine(workspace_dir)
+        engine = MarkdownEngine(_get_workspace_dir())
         agents = engine.list_agents()
         
         if not agents:
@@ -301,7 +299,7 @@ Examples:
         print("=" * 50)
         
         for agent_name in agents:
-            agent_path = workspace_dir / "agent" / agent_name
+            agent_path = _get_workspace_dir() / "agent" / agent_name
             md_path = agent_path / "agent.md"
             
             if md_path.exists():
@@ -320,7 +318,7 @@ Examples:
     
     if args.list_markdowns:
         # List markdown for all agents using MarkdownEngine
-        engine = MarkdownEngine(workspace_dir)
+        engine = MarkdownEngine(_get_workspace_dir())
         agents = engine.list_agents()
         
         if not agents:
@@ -331,7 +329,7 @@ Examples:
         print("=" * 50)
         
         for agent_name in agents:
-            agent_path = workspace_dir / "agent" / agent_name
+            agent_path = _get_workspace_dir() / "agent" / agent_name
             md_path = agent_path / "agent.md"
             
             if md_path.exists():
@@ -348,7 +346,7 @@ Examples:
     # New markdown command features
     if args.actions and args.agent:
         # Show actions from markdown
-        engine = MarkdownEngine(workspace_dir)
+        engine = MarkdownEngine(_get_workspace_dir())
         actions = engine.list_actions(args.agent)
         
         if actions:
@@ -361,7 +359,7 @@ Examples:
     
     elif args.tasks and args.agent:
         # Show tasks from markdown
-        engine = MarkdownEngine(workspace_dir)
+        engine = MarkdownEngine(_get_workspace_dir())
         tasks = engine.list_tasks(args.agent)
         
         if tasks:
@@ -374,7 +372,7 @@ Examples:
     
     elif args.code_blocks and args.agent:
         # Show code blocks from markdown
-        engine = MarkdownEngine(workspace_dir)
+        engine = MarkdownEngine(_get_workspace_dir())
         code_blocks = engine.list_code_blocks(args.agent)
         
         if code_blocks:
@@ -389,7 +387,7 @@ Examples:
     
     elif args.display:
         # Display full markdown content
-        engine = MarkdownEngine(workspace_dir)
+        engine = MarkdownEngine(_get_workspace_dir())
         markdown_content = engine.get_full_markdown(args.agent)
         
         if markdown_content:
@@ -404,7 +402,7 @@ Examples:
     
     elif args.execute and args.agent:
         # Execute all actions
-        engine = MarkdownEngine(workspace_dir)
+        engine = MarkdownEngine(_get_workspace_dir())
         success = engine.execute_all_actions(args.agent)
         if success:
             print(f"✅ All actions executed successfully for {args.agent}")
@@ -416,7 +414,7 @@ Examples:
     if args.converse and args.agent:
         # Start conversation with agent
         try:
-            conv = create_conversation(args.agent, workspace_dir)
+            conv = create_conversation(args.agent, _get_workspace_dir())
             print(f"\n🤖 Starting conversation with {args.agent}...")
             print("=" * 50)
             
@@ -482,7 +480,7 @@ Examples:
     # Create skill
     if args.create_skill and args.skill_name:
         # Create skill
-        skill_path = workspace_dir / "skill" / args.skill_name
+        skill_path = _get_workspace_dir() / "skill" / args.skill_name
         skill_path.mkdir(parents=True, exist_ok=True)
         
         # Check if directory was created successfully
@@ -538,7 +536,7 @@ print(result)
     # Create tool
     if args.create_tool and args.tool_name:
         # Create tool
-        tool_path = workspace_dir / "tool" / args.tool_name
+        tool_path = _get_workspace_dir() / "tool" / args.tool_name
         tool_path.mkdir(parents=True, exist_ok=True)
         
         tool_py_content = f'''#!/usr/bin/env python3

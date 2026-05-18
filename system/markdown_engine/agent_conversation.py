@@ -50,9 +50,14 @@ class AgentConversation:
         
         Args:
             agent_name: Name of the agent to converse with. If None, prompts user.
-            workspace: Optional workspace path
+            workspace: Workspace path (required)
         """
-        self.engine = MarkdownEngine(workspace or Path(__file__).resolve().parent.parent.parent / "workspace")
+        if workspace is None:
+            raise ValueError(
+                "AgentConversation requires an explicit workspace path. "
+                "Pass a Path to the workspace directory."
+            )
+        self.engine = MarkdownEngine(workspace)
         self.agent_name = agent_name
         self.state = ConversationState(agent_name=agent_name)
         self.conversation_log = []
