@@ -495,42 +495,8 @@ class AgentCaller:
             return code
     
     def _add_error_handling(self, code: str) -> str:
-        """添加错误处理"""
-        if "try:" in code:
-            return code
-        
-        lines = code.split("\n")
-        if len(lines) < 2:
-            return code
-        
-        # 找到函数体开始的位置
-        func_body_start = None
-        for i, line in enumerate(lines):
-            if line.startswith("def ") and i + 1 < len(lines):
-                # 找到函数定义后的第一行
-                for j in range(i + 1, len(lines)):
-                    if lines[j].strip() and not lines[j].strip().startswith("#"):
-                        func_body_start = j
-                        break
-                break
-        
-        if func_body_start is not None:
-            # 在函数体开始处添加 try-except
-            indent = len(lines[func_body_start]) - len(lines[func_body_start].lstrip())
-            indent_str = " " * indent
-            
-            lines.insert(func_body_start, f"{indent_str}try:")
-            lines.insert(func_body_start + 1, f"{indent_str}    pass")
-            
-            # 在函数末尾添加 except
-            lines.append(f"{indent_str}except Exception as e:")
-            lines.append(f"{indent_str}    return f'Error: {{e}}'")
-            
-            # 修复原有代码的缩进
-            for j in range(func_body_start + 2, len(lines) - 2):
-                lines[j] = "    " + lines[j]
-        
-        return "\n".join(lines)
+        """添加错误处理（暂未实现——保留以供未来扩展）"""
+        return code
     
     @staticmethod
     def _infer_type(annotation) -> str:

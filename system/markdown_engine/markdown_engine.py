@@ -15,6 +15,8 @@ import sys
 import re
 import hashlib
 import base64
+import builtins
+
 from pathlib import Path
 from typing import Dict, List, Optional, Any, Tuple, Union, Callable
 from dataclasses import dataclass, field
@@ -180,37 +182,41 @@ class MarkdownEngine:
                 "raw_content": None
             }
         
+        instructions, metadata = self._parse_markdown(content)
         result = {
             "agent_name": agent_name,
             "success": True,
             "raw_content": content,
-            "instructions": self._parse_markdown(content)
+            "instructions": instructions,
         }
+        if metadata:
+            result["metadata"] = metadata
         
         if raw:
             result["raw_content"] = content
             
         return result
     
-    def _parse_markdown(self, markdown: str) -> List[CommandDefinition]:
-        """Parse markdown content into command definitions.
-        
+    def _parse_markdown(self, markdown: str) -> tuple:
+        """Parse markdown content into command definitions and metadata.
+
         Supports multiple markdown formats:
         - Standard list items (- or *)
         - YAML front matter
         - JSON code blocks
         - Custom command blocks
-        
+
         Args:
             markdown: Raw markdown content
-            
+
         Returns:
-            List of CommandDefinition objects
+            Tuple of (List[CommandDefinition], dict metadata)
         """
         # Get agent path for source file tracking
         agent_path = self.agent_dir / "test_agent"  # Default placeholder
-        
+
         instructions = []
+        metadata = {}
         lines = markdown.split('\n')
         current_section = None
         current_items = []
@@ -219,7 +225,7 @@ class MarkdownEngine:
         in_yaml = False
         yaml_content = []
         command_line = 0
-        
+
         for line_num, line in enumerate(lines, 1):
             # Handle YAML front matter
             if line.strip().startswith("---"):
@@ -231,8 +237,8 @@ class MarkdownEngine:
                     in_yaml = False
                     if yaml_content:
                         try:
-                            yaml_data = yaml.safe_load('\n'.join(yaml_content))
-                            result["metadata"] = yaml_data or {}
+                            yaml_data = yaml.safe_load('\\n'.join(yaml_content))
+                            metadata = yaml_data or {}
                         except yaml.YAMLError as e:
                             print(f"YAML parse error: {e}")
                             pass
@@ -433,8 +439,9 @@ class MarkdownEngine:
                     enabled=item.enabled
                 ))
         
-        return instructions
-    
+        return instructions, metadata
+
+
     def list_actions(self, agent_name: str, enabled_only: bool = True) -> List[str]:
         """List all actions from an agent's markdown.
         

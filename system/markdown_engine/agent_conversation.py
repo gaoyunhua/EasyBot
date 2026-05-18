@@ -15,11 +15,6 @@ from typing import Dict, List, Optional, Any
 from dataclasses import dataclass, field
 from datetime import datetime
 
-# Add parent directory to path
-ROOT_DIR = Path(__file__).parent.parent.parent
-if str(ROOT_DIR) not in sys.path:
-    sys.path.insert(0, str(ROOT_DIR))
-
 from system.markdown_engine import (
     MarkdownEngine,
     CommandType,
@@ -57,7 +52,7 @@ class AgentConversation:
             agent_name: Name of the agent to converse with. If None, prompts user.
             workspace: Optional workspace path
         """
-        self.engine = MarkdownEngine(workspace or Path("/mnt/d/gyh/Projects/TRAE/EasyBot/workspace"))
+        self.engine = MarkdownEngine(workspace or Path(__file__).resolve().parent.parent.parent / "workspace")
         self.agent_name = agent_name
         self.state = ConversationState(agent_name=agent_name)
         self.conversation_log = []
@@ -88,7 +83,8 @@ class AgentConversation:
         self.state.user_variables = {}
         self.state.messages.append({
             "role": "system",
-            "content": f"New conversation started with {self.agent_name}"
+            "content": f"New conversation started with {self.agent_name}",
+            "timestamp": datetime.now().isoformat()
         })
     
     def get_markdown_content(self) -> str:
@@ -114,7 +110,8 @@ class AgentConversation:
         """
         self.state.messages.append({
             "role": "user",
-            "content": user_message
+            "content": user_message,
+            "timestamp": datetime.now().isoformat()
         })
         
         response = {
@@ -135,7 +132,8 @@ class AgentConversation:
                 result = self._execute_command(cmd)
                 self.state.messages.append({
                     "role": "assistant",
-                    "content": f"Executed command: {cmd}"
+                    "content": f"Executed command: {cmd}",
+                    "timestamp": datetime.now().isoformat()
                 })
                 if result.get("success"):
                     response["actions_taken"].append(cmd)

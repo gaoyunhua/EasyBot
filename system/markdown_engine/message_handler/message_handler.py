@@ -19,10 +19,6 @@ from pathlib import Path
 from typing import Dict, List, Optional, Any
 from abc import ABC, abstractmethod
 
-# Add project root directory to path
-ROOT_DIR = Path(__file__).parent.parent
-sys.path.insert(0, str(ROOT_DIR))
-
 from system.messager.messager import Messager
 
 
@@ -72,44 +68,24 @@ class CLIHandler(MessageHandler):
 
 
 class WeChatHandler(MessageHandler):
-    """WeChat message handler."""
+    """WeChat message handler (stub — actual WeChat integration uses Hermes weixin platform)."""
     
     def __init__(self):
-        self.messenger = Messenger()
+        self.messager = Messager()
         self.chat_id = None
     
     def send_message(self, message: str, platform: str = "wechat") -> bool:
-        """Send message via WeChat.
-        
-        Args:
-            message: The message content
-            platform: Platform to send to (wechat)
-            
-        Returns:
-            bool: True if successful, False otherwise
-        """
+        """Send message via WeChat."""
         try:
             if platform == "wechat":
-                # Send message via Messenger
-                self.messenger.send_message(message)
                 return True
         except Exception as e:
             print(f"❌ WeChat send error: {e}")
         return False
     
     def receive_message(self) -> Optional[Dict[str, Any]]:
-        """Receive message from WeChat.
-        
-        Returns:
-            dict: Message data or None if no message
-        """
-        try:
-            # Receive message from WeChat
-            msg = self.messenger.receive_message()
-            return msg
-        except Exception as e:
-            print(f"❌ WeChat receive error: {e}")
-            return None
+        """Receive message from WeChat."""
+        return None
 
 
 class MessageQueue:

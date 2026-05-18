@@ -68,5 +68,195 @@
     "tools_count": 0,
     "version": "1.0.0",
     "updated_at": "2026-05-05T17:39:44.775430"
+  },
+  "hello": {
+    "name": "hello",
+    "description": "hello",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/hello/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-11T19:53:42.612185"
+  },
+  "create_a_calculator": {
+    "name": "create_a_calculator",
+    "description": "Create a calculator agent",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/create_a_calculator/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-05T18:52:27.696729"
+  },
+  "dsfsdfsda": {
+    "name": "dsfsdfsda",
+    "description": "dsfsdfsda",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/dsfsdfsda/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-05T18:45:58.972857"
+  },
+  "sdaf": {
+    "name": "sdaf",
+    "description": "sdaf",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/sdaf/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-05T18:45:59.342537"
+  },
+  "sdf": {
+    "name": "sdf",
+    "description": "sdf",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/sdf/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-05T18:45:59.720570"
+  },
+  "dsf": {
+    "name": "dsf",
+    "description": "dsf",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/dsf/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-11T19:54:06.157395"
+  },
+  "new_agent": {
+    "name": "new_agent",
+    "description": "",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/new_agent/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-11T19:54:07.222511"
+  },
+  "wer": {
+    "name": "wer",
+    "description": "wer",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/wer/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-11T19:54:15.594805"
+  },
+  "werwe": {
+    "name": "werwe",
+    "description": "werwe",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/werwe/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-11T19:54:08.672309"
+  },
+  "we": {
+    "name": "we",
+    "description": "we",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/we/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-11T19:54:16.893212"
+  },
+  "werklweq": {
+    "name": "werklweq",
+    "description": "werklweq",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/werklweq/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-05T18:47:27.418816"
+  },
+  "df": {
+    "name": "df",
+    "description": "df",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/df/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-11T19:54:06.634251"
+  },
+  "fds": {
+    "name": "fds",
+    "description": "fds",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/fds/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-11T19:54:07.853034"
+  },
+  "ewr": {
+    "name": "ewr",
+    "description": "ewr",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/ewr/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-11T19:54:15.235737"
+  },
+  "ew": {
+    "name": "ew",
+    "description": "ew",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/ew/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-11T19:54:17.437478"
+  },
+  "ewrwe": {
+    "name": "ewrwe",
+    "description": "ewrwe",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/ewrwe/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-11T19:54:10.850199"
+  },
+  "werewr": {
+    "name": "werewr",
+    "description": "werewr",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/werewr/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-11T19:54:14.720401"
+  },
+  "rew": {
+    "name": "rew",
+    "description": "rew",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/rew/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-11T19:54:17.643991"
+  },
+  "r": {
+    "name": "r",
+    "description": "r",
+    "phase": "saved",
+    "path": "/mnt/d/gyh/Projects/TRAE/EasyBot/workspace/agent/r/agent.md",
+    "skills_count": 0,
+    "tools_count": 0,
+    "version": "1.0.0",
+    "updated_at": "2026-05-11T19:54:17.252349"
   }
 }
